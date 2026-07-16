@@ -1,19 +1,4 @@
 <!DOCTYPE html>
-<div class="stats-card">
-
-    <div class="stats-icon">
-        📦
-    </div>
-
-    <div class="stats-info">
-
-        <span>دوربین‌های اجاره داده شده</span>
-
-        <strong id="rentedCount">0</strong>
-
-    </div>
-
-</div>
 <html lang="fa" dir="rtl">
 
 <head>
@@ -31,14 +16,50 @@
 
 <div class="container">
 
+
     <h1>📷 مدیریت اجاره دوربین GoPro</h1>
 
+
+    <!-- تعداد دوربین های اجاره داده شده -->
+
+    <div class="stats-card">
+
+        <div class="stats-icon">
+            📦
+        </div>
+
+
+        <div class="stats-info">
+
+            <span>
+                دوربین‌های اجاره داده شده
+            </span>
+
+
+            <strong id="rentedCount">
+                0
+            </strong>
+
+
+        </div>
+
+    </div>
+
+
+
+
     <!-- افزودن دوربین -->
+
     <div class="card">
 
-        <h2>➕ افزودن دوربین</h2>
+
+        <h2>
+            ➕ افزودن دوربین
+        </h2>
+
 
         <div class="add-box">
+
 
             <input
                 type="text"
@@ -46,47 +67,88 @@
                 placeholder="کد دوربین (مثلاً GP001)"
             >
 
+
             <button class="add" onclick="addCamera()">
+
                 افزودن
+
             </button>
+
 
         </div>
 
+
     </div>
 
-    <!-- دوربین‌های موجود -->
+
+
+
+
+    <!-- دوربین های موجود -->
+
+
     <div class="card">
 
-        <h2>📷 دوربین‌های موجود</h2>
+
+        <h2>
+            📷 دوربین‌های موجود
+        </h2>
+
 
         <div id="available">
 
+
             <div class="empty">
+
                 هنوز دوربینی ثبت نشده است.
+
             </div>
+
 
         </div>
 
+
     </div>
 
-    <!-- دوربین‌های اجاره داده شده -->
+
+
+
+
+
+    <!-- دوربین های اجاره داده شده -->
+
+
     <div class="card">
 
-        <h2>📦 دوربین‌های اجاره داده شده</h2>
+
+        <h2>
+            📦 دوربین‌های اجاره داده شده
+        </h2>
+
 
         <div id="rented">
 
+
             <div class="empty">
+
                 هنوز دوربینی اجاره داده نشده است.
+
             </div>
+
 
         </div>
 
+
     </div>
+
+
 
 </div>
 
+
+
 <script src="script.js"></script>
+
 
 </body>
 
