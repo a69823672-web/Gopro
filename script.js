@@ -1,6 +1,8 @@
 let available = JSON.parse(localStorage.getItem("available")) || [];
 let rented = JSON.parse(localStorage.getItem("rented")) || [];
 
+let totalRentals = JSON.parse(localStorage.getItem("totalRentals")) || 0;
+
 
 // ذخیره اطلاعات
 function save(){
@@ -8,6 +10,8 @@ function save(){
     localStorage.setItem("available", JSON.stringify(available));
 
     localStorage.setItem("rented", JSON.stringify(rented));
+
+    localStorage.setItem("totalRentals", JSON.stringify(totalRentals));
 
     render();
 
@@ -23,7 +27,6 @@ function addCamera(){
     let code = input.value.trim().toUpperCase();
 
 
-
     if(code === ""){
 
         alert("کد دوربین را وارد کن");
@@ -31,7 +34,6 @@ function addCamera(){
         return;
 
     }
-
 
 
     if(available.includes(code) || rented.some(item => item.code === code)){
@@ -43,12 +45,9 @@ function addCamera(){
     }
 
 
-
     available.push(code);
 
-
     input.value = "";
-
 
     save();
 
@@ -90,10 +89,15 @@ function rentCamera(index){
 
 
 
+    // افزایش تعداد کل اجاره‌ها
+    totalRentals++;
+
+
     save();
 
 
 }
+
 
 
 
@@ -108,11 +112,11 @@ function returnCamera(index){
     available.push(camera.code);
 
 
-
     save();
 
 
 }
+
 
 
 
@@ -124,17 +128,16 @@ function deleteCamera(index){
 
     if(confirm("حذف شود؟")){
 
-
         available.splice(index,1);
 
-
         save();
-
 
     }
 
 
 }
+
+
 
 
 
@@ -156,8 +159,9 @@ function render(){
 
 
 
-    // نمایش تعداد اجاره داده شده
-    document.getElementById("rentedCount").innerText = rented.length;
+    // نمایش تعداد کل اجاره‌ها
+    document.getElementById("rentedCount").innerText = totalRentals;
+
 
 
 
@@ -176,9 +180,7 @@ function render(){
 
         availableBox.innerHTML += `
 
-
         <div class="item">
-
 
             <span>
             📷 ${camera}
@@ -189,25 +191,18 @@ function render(){
 
 
                 <button class="rent" onclick="rentCamera(${index})">
-
-                اجاره بده
-
+                    اجاره بده
                 </button>
 
 
-
                 <button class="delete" onclick="deleteCamera(${index})">
-
-                حذف
-
+                    حذف
                 </button>
 
 
             </div>
 
-
         </div>
-
 
         `;
 
@@ -218,16 +213,13 @@ function render(){
 
 
 
-
-
     if(rented.length === 0){
-
 
         rentedBox.innerHTML =
         `<div class="empty">هیچ دوربینی اجاره داده نشده</div>`;
 
-
     }
+
 
 
 
@@ -242,7 +234,6 @@ function render(){
 
 
             <div>
-
 
                 <b>📷 ${camera.code}</b>
 
@@ -263,19 +254,15 @@ function render(){
 
 
 
-
             <div class="actions">
 
 
                 <button class="return" onclick="returnCamera(${index})">
-
-                برگشت داده شد
-
+                    برگشت داده شد
                 </button>
 
 
             </div>
-
 
 
         </div>
@@ -292,5 +279,5 @@ function render(){
 
 
 
-// اجرای اولیه
+
 render();
