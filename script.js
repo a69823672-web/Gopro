@@ -1,67 +1,84 @@
-// =========================
-// GoPro Rental Manager
-// =========================
-
 let available = JSON.parse(localStorage.getItem("available")) || [];
 let rented = JSON.parse(localStorage.getItem("rented")) || [];
 
-function save() {
+
+// ذخیره اطلاعات
+function save(){
+
     localStorage.setItem("available", JSON.stringify(available));
+
     localStorage.setItem("rented", JSON.stringify(rented));
+
     render();
+
 }
 
 
+
 // اضافه کردن دوربین
-function addCamera() {
+function addCamera(){
 
-    const input = document.getElementById("cameraCode");
-    const code = input.value.trim().toUpperCase();
+    let input = document.getElementById("cameraCode");
 
-    if (code === "") {
-        alert("کد دوربین را وارد کنید.");
-        return;
-    }
+    let code = input.value.trim().toUpperCase();
 
 
-    if (available.includes(code) || rented.some(c => c.code === code)) {
 
-        alert("این کد قبلاً ثبت شده است.");
+    if(code === ""){
+
+        alert("کد دوربین را وارد کن");
+
         return;
 
     }
+
+
+
+    if(available.includes(code) || rented.some(item => item.code === code)){
+
+        alert("این دوربین قبلاً ثبت شده");
+
+        return;
+
+    }
+
 
 
     available.push(code);
 
+
     input.value = "";
+
 
     save();
 
 }
 
 
+
 // اجاره دادن دوربین
-function rentCamera(index) {
+function rentCamera(index){
 
 
-    const customer = prompt("نام مشتری:");
+    let customer = prompt("نام مشتری:");
 
-    if (customer === null) return;
-
-
-    const phone = prompt("شماره تماس:");
-
-    if (phone === null) return;
+    if(customer === null) return;
 
 
 
-    const cam = available.splice(index, 1)[0];
+    let phone = prompt("شماره تماس:");
+
+    if(phone === null) return;
+
+
+
+    let camera = available.splice(index,1)[0];
+
 
 
     rented.push({
 
-        code: cam,
+        code: camera,
 
         customer: customer,
 
@@ -72,36 +89,43 @@ function rentCamera(index) {
     });
 
 
+
     save();
 
+
 }
+
 
 
 
 // برگشت دوربین
-function returnCamera(index) {
+function returnCamera(index){
 
 
-    const cam = rented.splice(index, 1)[0];
+    let camera = rented.splice(index,1)[0];
 
 
-    available.push(cam.code);
+    available.push(camera.code);
+
 
 
     save();
+
 
 }
 
 
 
+
+
 // حذف دوربین
-function deleteCamera(index) {
+function deleteCamera(index){
 
 
-    if (confirm("این دوربین حذف شود؟")) {
+    if(confirm("حذف شود؟")){
 
 
-        available.splice(index, 1);
+        available.splice(index,1);
 
 
         save();
@@ -109,17 +133,20 @@ function deleteCamera(index) {
 
     }
 
+
 }
 
 
 
+
+
 // نمایش اطلاعات
-function render() {
+function render(){
 
 
-    const availableBox = document.getElementById("available");
+    let availableBox = document.getElementById("available");
 
-    const rentedBox = document.getElementById("rented");
+    let rentedBox = document.getElementById("rented");
 
 
 
@@ -129,24 +156,22 @@ function render() {
 
 
 
-    // تعداد دوربین اجاره داده شده
+    // نمایش تعداد اجاره داده شده
     document.getElementById("rentedCount").innerText = rented.length;
 
 
 
-    if (available.length === 0) {
 
+    if(available.length === 0){
 
         availableBox.innerHTML =
-        '<div class="empty">هیچ دوربینی موجود نیست.</div>';
-
+        `<div class="empty">هیچ دوربینی موجود نیست</div>`;
 
     }
 
 
 
-    available.forEach((cam, index) => {
-
+    available.forEach((camera,index)=>{
 
 
         availableBox.innerHTML += `
@@ -155,7 +180,9 @@ function render() {
         <div class="item">
 
 
-            <span>📷 ${cam}</span>
+            <span>
+            📷 ${camera}
+            </span>
 
 
             <div class="actions">
@@ -163,7 +190,7 @@ function render() {
 
                 <button class="rent" onclick="rentCamera(${index})">
 
-                    اجاره بده
+                اجاره بده
 
                 </button>
 
@@ -171,7 +198,7 @@ function render() {
 
                 <button class="delete" onclick="deleteCamera(${index})">
 
-                    حذف
+                حذف
 
                 </button>
 
@@ -190,19 +217,22 @@ function render() {
 
 
 
-    if (rented.length === 0) {
+
+
+
+    if(rented.length === 0){
 
 
         rentedBox.innerHTML =
-        '<div class="empty">هیچ دوربینی اجاره داده نشده است.</div>';
+        `<div class="empty">هیچ دوربینی اجاره داده نشده</div>`;
 
 
     }
 
 
 
-    rented.forEach((cam, index) => {
 
+    rented.forEach((camera,index)=>{
 
 
         rentedBox.innerHTML += `
@@ -214,25 +244,23 @@ function render() {
             <div>
 
 
-                <b>📷 ${cam.code}</b>
+                <b>📷 ${camera.code}</b>
 
                 <br><br>
 
-
-                👤 ${cam.customer}
-
-                <br>
-
-
-                📞 ${cam.phone}
+                👤 ${camera.customer}
 
                 <br>
 
+                📞 ${camera.phone}
 
-                📅 ${cam.date}
+                <br>
+
+                📅 ${camera.date}
 
 
             </div>
+
 
 
 
@@ -241,7 +269,7 @@ function render() {
 
                 <button class="return" onclick="returnCamera(${index})">
 
-                    برگشت داده شد
+                برگشت داده شد
 
                 </button>
 
@@ -249,11 +277,11 @@ function render() {
             </div>
 
 
+
         </div>
 
 
         `;
-
 
 
     });
@@ -264,4 +292,5 @@ function render() {
 
 
 
+// اجرای اولیه
 render();
