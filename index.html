@@ -12,54 +12,39 @@
 
 </head>
 
-
 <body>
 
 <div class="container">
 
-
     <h1>📷 مدیریت اجاره دوربین GoPro</h1>
 
-
-
-    <!-- تعداد دوربین های اجاره داده شده -->
-
+    <!-- کارت آمار -->
     <div class="stats-card">
 
         <div class="stats-icon">
             📦
         </div>
 
-
         <div class="stats-info">
 
-            <span>
-                دوربین‌های اجاره داده شده
-            </span>
+            <span>تعداد اجاره‌های امروز</span>
 
-
-            <strong id="rentedCount">
-                0
-            </strong>
-
+            <strong id="rentedCount">0</strong>
 
         </div>
 
+        <button class="reset" onclick="resetCounter()">
+            🔄 صفر کردن آمار امروز
+        </button>
+
     </div>
 
-
-
-
     <!-- افزودن دوربین -->
-
     <div class="card">
-
 
         <h2>➕ افزودن دوربین</h2>
 
-
         <div class="add-box">
-
 
             <input
                 type="text"
@@ -67,79 +52,47 @@
                 placeholder="کد دوربین (مثلاً GP001)"
             >
 
-
             <button class="add" onclick="addCamera()">
                 افزودن
             </button>
 
-
         </div>
-
 
     </div>
 
-
-
-
-
-    <!-- دوربین های موجود -->
-
-
+    <!-- دوربین‌های موجود -->
     <div class="card">
-
 
         <h2>📷 دوربین‌های موجود</h2>
 
-
         <div id="available">
-
 
             <div class="empty">
                 هنوز دوربینی ثبت نشده است.
             </div>
 
-
         </div>
-
 
     </div>
 
-
-
-
-
-
-    <!-- دوربین های اجاره داده شده -->
-
-
+    <!-- دوربین‌های اجاره داده شده -->
     <div class="card">
-
 
         <h2>📦 دوربین‌های اجاره داده شده</h2>
 
-
         <div id="rented">
-
 
             <div class="empty">
                 هنوز دوربینی اجاره داده نشده است.
             </div>
 
-
         </div>
-
 
     </div>
 
-
-
 </div>
 
-
-
-
 <script src="script.js"></script>
-
 
 </body>
 
