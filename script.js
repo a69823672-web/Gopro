@@ -281,3 +281,17 @@ function render(){
 
 
 render();
+// صفر کردن آمار امروز
+function resetCounter(){
+
+    if(confirm("آیا مطمئنی می‌خواهی آمار امروز صفر شود؟")){
+
+        totalRentals = 0;
+
+        save();
+
+        alert("✅ آمار امروز با موفقیت صفر شد.");
+
+    }
+
+}
