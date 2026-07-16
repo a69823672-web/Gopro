@@ -381,3 +381,34 @@ button:hover{
     }
 
 }
+/* دکمه صفر کردن آمار */
+
+.reset{
+
+    background:#dc2626;
+
+    color:#fff;
+
+    border:none;
+
+    padding:12px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-size:14px;
+
+    margin-right:auto;
+
+}
+
+.reset:hover{
+
+    background:#b91c1c;
+
+    transform:scale(1.05);
+
+}
